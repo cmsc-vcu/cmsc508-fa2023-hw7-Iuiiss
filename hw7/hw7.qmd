@@ -1,6 +1,6 @@
 ---
 title: Homework 7 - Creating a resume database
-author: (your name goes here!)
+author: Luis Leis 
 date: last-modified
 format:
     html:
@@ -14,7 +14,7 @@ format:
 
 (Please clean up any comments that I included.  This is a scaffold document.)
 
-GITHUB URL:  <your URL goes here!>
+GITHUB URL:  <https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-Iuiiss/tree/main>
 
 ```{python}
 #| eval: true
@@ -92,7 +92,7 @@ except Exception as e:
 
 ## Overview and description
 
-(briefly describe the project and the database)
+This projects teaches us how to actually create and populate databases, and practice using the queries to return the specified result we are looking for
 
 ## Crows-foot diagram
 
@@ -101,15 +101,45 @@ except Exception as e:
 ```{mermaid}
 %%| echo: false
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
+    PEOPLE ||--o{ SKILLS : can_have
+    PEOPLE }|--|{ ROLES: can_have
+
+    PEOPLE{
         int id
         string first_name
         string last_name
+        string email
+        string linkedin_url
+        string headshot_url
+        string discord_handle
+        string brief_bio
+        date date_joined
     }
-    DELIVERY-ADDRESS {
+    PEOPLEROLES{
         int id
+        int people_id
+        int role_id
+        date date_assigned
+
+        
+    }
+    PEOPLESKILLS{
+        int id
+        int skills_id
+        int people_id
+        date date_acquired
+    }
+    ROLES{
+        int roles_id
+        string roles_name
+        int sort_priority
+    }
+    SKILLS{
+        int skills_id
+        string description
+        string tag
+        string url
+        int time_commitment
     }
 ```
 
