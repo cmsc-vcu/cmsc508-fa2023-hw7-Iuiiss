@@ -60,7 +60,6 @@ INSERT INTO skills( skills_id, skills_name, skills_description, skills_tag) valu
 (8, 'Woodworking', 'Crafting intricate and functional items from wood.', 'Skill 8');
 
 
-select * from skills;
 
 # Section 4
 # Create people( id,first_name, last_name, email, linkedin_url, headshot_url, discord_handle, brief_bio, date_joined)
@@ -78,8 +77,6 @@ CREATE TABLE people (
     people_date_joined date not null,
     PRIMARY KEY (people_id)
 );
-show tables;
-select * from peopleskills;
 
 # Section 5
 # Populate people with six people.
@@ -159,20 +156,6 @@ INSERT INTO peopleskills (people_id,skills_id) values
 (10,4),
 (10,5);
 
-select * from peopleskills;
-
-SELECT 
-    people_last_name,
-    skills_name,
-    skills_tag
-    from
-    peopleskills a
-    inner join people b on (a.people_id=b.people_id)
-    inner join skills c on (a.skills_id=c.skills_id)
-    order BY
-    skills_name,
-    people_last_name
-    ;
 
 # Section 8
 # Create roles( id, name, sort_priority )
@@ -248,5 +231,3 @@ INSERT INTO peopleroles (people_id, role_id, date_assigned) VALUES
     (9, 2, '2023-11-12'), 
     (10, 2, '2023-11-12'), 
     (10, 1, '2023-11-12'); 
-
-show tables;
