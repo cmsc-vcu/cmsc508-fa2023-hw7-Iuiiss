@@ -105,7 +105,7 @@ erDiagram
     PEOPLE }|--|{ ROLES: can_have
 
     PEOPLE{
-        int id
+        int id PK
         string first_name
         string last_name
         string email
@@ -116,26 +116,26 @@ erDiagram
         date date_joined
     }
     PEOPLEROLES{
-        int id
-        int people_id
-        int role_id
-        date date_assigned
+        int id FK
+        int people_id FK
+        int role_id FK
+        date date_assigned FK
 
         
     }
     PEOPLESKILLS{
-        int id
-        int skills_id
-        int people_id
-        date date_acquired
+        int id FK
+        int skills_id FK 
+        int people_id FK
+        date date_acquired FK
     }
     ROLES{
-        int roles_id
+        int roles_id PK
         string roles_name
         int sort_priority
     }
     SKILLS{
-        int skills_id
+        int skills_id PK
         string description
         string tag
         string url
@@ -149,7 +149,7 @@ For the people, skills, and roles tables, provide a description of each table an
 
 ### People table
 
-The *people* table contains elements that describe ... 
+The *people* table contains elements that describe the people and all of their information: name, email, linkedin, etc.
 
 Below is a list of data in the *people* table.
 
@@ -172,7 +172,7 @@ df
 
 ### Skills table
 
-The *skills* table contains elements that describe ... 
+The *skills* table contains elements that describe all the different skills the people have. It varies from skateboard to rock climbing to woodwork.
 
 Below is a list of data in the *skills* table.
 
@@ -195,7 +195,7 @@ df
 
 ### Roles table
 
-The *roles* table contains elements that describe ... 
+The *roles* table contains elements that describe what these people do and their level of authority in the company.
 
 Below is a list of data in the *roles* table.
 
