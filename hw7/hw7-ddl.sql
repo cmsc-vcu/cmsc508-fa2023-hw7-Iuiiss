@@ -49,15 +49,16 @@ CREATE TABLE skills (
 # Populates the skills table with eight skills, their tag fields must exactly contain “Skill 1”, “Skill 2”, etc.
 # You can assign skill names.  Please be creative!
 
-INSERT INTO skills( skills_id, skills_name, skills_description, skills_tag) values
-(1, 'Rock Climbing', 'Finger strength!', 'Skill 1'),
-(2, 'Rap', 'Freestyle of the dome', 'Skill 2'),
-(3, 'Skateboarding', 'Are you brave enough?', 'Skill 3'),
-(4, 'Rock Climbing', 'Finger strength!', 'Skill 4'),
-(5, 'Culinary Arts', 'Mastering the art of cooking and food preparation.', 'Skill 5'),
-(6, 'Photography', 'Capturing moments and creating visually stunning photographs.', 'Skill 6'),
-(7, 'Gardening', 'Cultivating and maintaining beautiful and productive gardens.', 'Skill 7'),
-(8, 'Woodworking', 'Crafting intricate and functional items from wood.', 'Skill 8');
+INSERT INTO skills (skills_id, skills_name, skills_description, skills_tag, skills_url, skills_time_commitment) VALUES
+(1, 'Rock Climbing', 'Finger strength!', 'Skill 1', 'https://example.com/rock_climbing', 20),
+(2, 'Rap', 'Freestyle of the dome', 'Skill 2', 'https://example.com/rap', 15),
+(3, 'Skateboarding', 'Are you brave enough?', 'Skill 3', 'https://example.com/skateboarding', 30),
+(4, 'Rock Climbing', 'Finger strength!', 'Skill 4', 'https://example.com/rock_climbing', 20),
+(5, 'Culinary Arts', 'Mastering the art of cooking and food preparation.', 'Skill 5', 'https://example.com/culinary_arts', 25),
+(6, 'Photography', 'Capturing moments and creating visually stunning photographs.', 'Skill 6', 'https://example.com/photography', 15),
+(7, 'Gardening', 'Cultivating and maintaining beautiful and productive gardens.', 'Skill 7', 'https://example.com/gardening', 20),
+(8, 'Woodworking', 'Crafting intricate and functional items from wood.', 'Skill 8', 'https://example.com/woodworking', 30);
+
 
 
 
@@ -68,10 +69,11 @@ INSERT INTO skills( skills_id, skills_name, skills_description, skills_tag) valu
 
 CREATE TABLE people (
     people_id int not null,
+    people_first_name varchar(255),
     people_last_name varchar(256) NOT NULL,
     people_email varchar(255),
     people_linkedin_url varchar(255),
-    people_headhshort_url varchar(255),
+    people_headshot_url varchar(255),
     people_discord_handle varchar(255),
     people_brief_bio varchar(255),
     people_date_joined date not null,
@@ -83,17 +85,17 @@ CREATE TABLE people (
 # Their last names must exactly be “Person 1”, “Person 2”, etc.
 # Other fields are for you to assign.
 
-insert into people (people_id,people_last_name, people_date_joined) values
- (1,'Person 1', '2013-09-12'),
- (2,'Person 2', '2011-11-12'),
- (3,'Person 3', '2015-11-15'),
- (4,'Person 4', '2018-01-09'),
- (5,'Person 5', '2020-11-06'),
- (6,'Person 6', '2023-04-28'),
- (7,'Person 7', '2022-03-28'),
- (8,'Person 8', '2021-02-28'),
- (9,'Person 9', '2020-01-28'),
- (10,'Person 10', '2011-08-28');
+INSERT INTO people (people_id, people_first_name, people_last_name, people_email, people_linkedin_url, people_headshot_url, people_discord_handle, people_brief_bio, people_date_joined) VALUES
+ (1, 'John', 'Person 1', 'john.doe@example.com', 'https://www.linkedin.com/in/johndoe', 'https://example.com/headshot1.jpg', 'john_doe25', 'Experienced software developer with a passion for innovation.', '2013-09-12'),
+ (2, 'Alice', 'Person 2', 'alice.johnson@example.com', 'https://www.linkedin.com/in/alicejohnson', 'https://example.com/headshot2.jpg', 'alice_johnson53', 'Creative designer with a keen eye for aesthetics.', '2011-11-12'),
+ (3, 'Michael', 'Person 3', 'michael.smith@example.com', 'https://www.linkedin.com/in/michaelsmith', 'https://example.com/headshot3.jpg', 'michael_smith76', 'Team-oriented developer and team lead.', '2015-11-15'),
+ (4, 'Emily', 'Person 4', 'emily.brown@example.com', 'https://www.linkedin.com/in/emilybrown', 'https://example.com/headshot4.jpg', 'emily_brown755', 'Enthusiastic recruit ready to learn and contribute.', '2018-01-09'),
+ (5, 'Sophia', 'Person 5', 'sophia.wilson@example.com', 'https://www.linkedin.com/in/sophiawilson', 'https://example.com/headshot5.jpg', 'sophia_wilson234', 'Eager recruit excited to embark on a new journey.', '2020-11-06'),
+ (6, 'Daniel', 'Person 6', 'daniel.miller@example.com', 'https://www.linkedin.com/in/danielmiller', 'https://example.com/headshot6.jpg', 'daniel_miller876', 'Versatile developer with a passion for design.', '2023-04-28'),
+ (7, 'Olivia', 'Person 7', 'olivia.moore@example.com', 'https://www.linkedin.com/in/oliviamoore', 'https://example.com/headshot7.jpg', 'olivia_moore8765', 'Talented designer with a focus on user experience.', '2022-03-28'),
+ (8, 'Ethan', 'Person 8', 'ethan.anderson@example.com', 'https://www.linkedin.com/in/ethananderson', 'https://example.com/headshot8.jpg', 'ethan_anderson7654', 'Creative designer and team lead.', '2021-02-28'),
+ (9, 'Ava', 'Person 9', 'ava.hill@example.com', 'https://www.linkedin.com/in/avahill', 'https://example.com/headshot9.jpg', 'ava_hill_1243543', 'Experienced developer with a focus on web technologies.', '2020-01-28'),
+ (10, 'Logan', 'Person 10', 'logan.baker@example.com', 'https://www.linkedin.com/in/loganbaker', 'https://example.com/headshot10.jpg', 'logan_baker', 'Passionate developer and designer with a knack for problem-solving.', '2011-08-28');
 
 
 

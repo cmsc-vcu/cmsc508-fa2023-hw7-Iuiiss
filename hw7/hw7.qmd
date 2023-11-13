@@ -96,7 +96,7 @@ This projects teaches us how to actually create and populate databases, and prac
 
 ## Crows-foot diagram
 
-(add a description of the diagram and what the reader is seeing.)
+Here we can see a visual representation of the relationships between the tables
 
 ```{mermaid}
 %%| echo: false
@@ -179,8 +179,18 @@ Below is a list of data in the *skills* table.
 ```{python}
 #| echo: false
 #| eval: true
-
+sql = f"""
+select * from skills;
+"""
 ## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
 ```
 
 ### Roles table
@@ -192,8 +202,18 @@ Below is a list of data in the *roles* table.
 ```{python}
 #| echo: false
 #| eval: true
-
+sql = f"""
+select * from roles;
+"""
 ## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
 ```
 
 
@@ -203,13 +223,6 @@ Let's explore the database!
 
 # List skill names, tags, and descriptions ordered by name
 
-(here a sample query)
-
-```{python}
-sql = f"""
-select * from people
-"""
-```
 
 
 (and here is a sample result from the query)
@@ -217,6 +230,11 @@ select * from people
 ```{python}
 #| echo: false
 #| eval: true
+sql = f"""
+SELECT skills_name, skills_tag, skills_description
+FROM skills
+ORDER BY skills_name;
+"""
 try:
     df = pd.read_sql(sql,cnx)
     df
@@ -225,35 +243,179 @@ except Exception as e:
     print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
     df = pd.DataFrame()
 df
-
 ```
 
 
 ### List people names and email addresses ordered by last_name
-
+```{python}
+#| echo: false
+#| eval: true
+sql = f"""
+SELECT people_first_name, people_last_name, people_email
+FROM people
+ORDER BY people_last_name;
+"""
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List skill names of Person 1
-
+```{python}
+#| echo: false
+#| eval: true
+sql = f"""
+SELECT s.skills_name
+FROM people p
+JOIN peopleskills ps ON p.people_id = ps.people_id
+JOIN skills s ON ps.skills_id = s.skills_id
+WHERE p.people_id = 1;
+"""
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List people names with Skill 6
-
+```{python}
+#| echo: false
+#| eval: true
+sql = f"""
+SELECT p.people_first_name, p.people_last_name
+FROM people p
+JOIN peopleskills ps ON p.people_id = ps.people_id
+JOIN skills s ON ps.skills_id = s.skills_id
+WHERE s.skills_tag = 'Skill 6';
+"""
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List people with a DEVELOPER role
+```{python}
+#| echo: false
+#| eval: true
+sql = f"""
+SELECT p.people_first_name, p.people_last_name
+FROM people p
+JOIN peopleroles pr ON p.people_id = pr.people_id
+JOIN roles r ON pr.role_id = r.roles_id
+WHERE r.roles_name = 'Developer';
 
+"""
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List names and email addresses of people without skills
 
+```{python}
+#| echo: false
+#| eval: true
+sql = f"""
+SELECT p.people_first_name, p.people_last_name, p.people_email
+FROM people p
+WHERE p.people_id NOT IN (SELECT DISTINCT people_id FROM peopleskills);
+
+"""
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List names and tags of unused skills
+```{python}
+#| echo: false
+#| eval: true
+sql = f"""
+SELECT s.skills_name, s.skills_tag
+FROM skills s
+WHERE s.skills_id NOT IN (SELECT DISTINCT skills_id FROM peopleskills);
 
+"""
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List people names and skill names with the BOSS role
+```{python}
+#| echo: false
+#| eval: true
+sql = f"""
+SELECT p.people_first_name, p.people_last_name, s.skills_name
+FROM people p
+JOIN peopleroles pr ON p.people_id = pr.people_id
+JOIN roles r ON pr.role_id = r.roles_id
+JOIN peopleskills ps ON p.people_id = ps.people_id
+JOIN skills s ON ps.skills_id = s.skills_id
+WHERE r.roles_name = 'Boss';
 
+"""
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List ids and names of unused roles
-
+```{python}
+#| echo: false
+#| eval: true
+sql = f"""
+SELECT r.roles_id, r.roles_name
+FROM roles r
+WHERE r.roles_id NOT IN (SELECT DISTINCT role_id FROM peopleroles);
+"""
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ## Reflection
 
 (Write a paragraph expressing your thoughts, feelings, and insights about your experience with this assignment.  Pause and breath before writing - I'm trying to encourage critical thinking and self-awareness while allowing you to explore the connections between theory and practice. And yes, delete this paragraph.)
+
+While working on this assignment, I found myself having the same feeling as I did when I first started coding. I felt lost, and would quickly get stuck on little mistakes that I couldn't seem to figure out. But after a bit of work I started finding patterns and certain things that repeated from section to section. It was then we I started getting the hang of it and realizing that this is just pretty much working in excel. The tables, the information, making sure the columns and the info align regarding the data types, the connections, etc. I found myself enjoying working on this. Although I did feel like it was just repetitive work and tedious in a sense, it's a very rewarding feeling when everything works nicely.
 
