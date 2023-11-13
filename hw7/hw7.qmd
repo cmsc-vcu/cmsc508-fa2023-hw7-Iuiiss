@@ -414,8 +414,5 @@ df
 ```
 
 ## Reflection
-
-(Write a paragraph expressing your thoughts, feelings, and insights about your experience with this assignment.  Pause and breath before writing - I'm trying to encourage critical thinking and self-awareness while allowing you to explore the connections between theory and practice. And yes, delete this paragraph.)
-
 While working on this assignment, I found myself having the same feeling as I did when I first started coding. I felt lost, and would quickly get stuck on little mistakes that I couldn't seem to figure out. But after a bit of work I started finding patterns and certain things that repeated from section to section. It was then we I started getting the hang of it and realizing that this is just pretty much working in excel. The tables, the information, making sure the columns and the info align regarding the data types, the connections, etc. I found myself enjoying working on this. Although I did feel like it was just repetitive work and tedious in a sense, it's a very rewarding feeling when everything works nicely.
 
