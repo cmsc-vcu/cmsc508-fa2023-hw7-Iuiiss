@@ -10,9 +10,8 @@ format:
         code-copy: true
 ---
 
-(include a brief description of what is in this document)
+This document demonstrate how using MySQL and python can help us create and quickly organize date from a database and return whatever information we shall need. 
 
-(Please clean up any comments that I included.  This is a scaffold document.)
 
 GITHUB URL:  <https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-Iuiiss/tree/main>
 
@@ -222,7 +221,6 @@ df
 Let's explore the database!
 
 # List skill names, tags, and descriptions ordered by name
-
 
 
 (and here is a sample result from the query)
